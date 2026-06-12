@@ -94,7 +94,7 @@ button[type="submit"]:hover {
   transform: scale(1.03);
 }
 
-/* Search Bar */
+/* Search */
 
 .search-container {
   width: 100%;
@@ -143,6 +143,11 @@ button[type="submit"]:hover {
   transform: translateY(-2px);
 }
 
+.assignment-completed {
+  border-left: 5px solid #28a745;
+  opacity: 0.9;
+}
+
 .assignment-info {
   flex-grow: 1;
 }
@@ -156,6 +161,29 @@ button[type="submit"]:hover {
   margin: 4px 0;
   color: rgba(255,255,255,0.75);
   font-size: 0.9rem;
+}
+
+/* Buttons */
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.complete-btn {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.complete-btn:hover {
+  background: #218838;
+  transform: scale(1.05);
 }
 
 .delete-btn {
@@ -221,7 +249,7 @@ button[type="submit"]:hover {
   margin-bottom: 1rem;
 }
 
-/* Mobile */
+/* Responsive */
 
 @media (max-width: 1000px) {
   .main-container {
@@ -247,7 +275,12 @@ button[type="submit"]:hover {
     align-items: flex-start;
   }
 
-  .delete-btn {
+  .button-group {
     width: 100%;
+  }
+
+  .complete-btn,
+  .delete-btn {
+    flex: 1;
   }
 }
