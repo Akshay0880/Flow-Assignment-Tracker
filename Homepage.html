@@ -4,23 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Assignment Tracker 2025</title>
+
   <link rel="stylesheet" href="styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
 
   <!-- EmailJS Script -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
+
 <body>
-  <div class="search-container">
-    <input
-        type="text"
-        id="searchInput"
-        placeholder="🔍 Search assignments..."
-    >
-</div>
+
   <div class="main-container">
+
     <header class="header">
-      <img src="https://i.pinimg.com/736x/42/b3/80/42b380c5d8b884f1cef1199df34652eb.jpg" alt="AI Assistant" class="ai-img" />
+      <img
+        src="https://i.pinimg.com/736x/42/b3/80/42b380c5d8b884f1cef1199df34652eb.jpg"
+        alt="AI Assistant"
+        class="ai-img"
+      />
+
       <h1 class="title">Assignment Tracker</h1>
       <p class="subtitle">Smart. Fast. Effortless.</p>
     </header>
@@ -32,34 +34,78 @@
     </section>
 
     <form id="assignmentForm" class="glass-card">
-      <input type="text" id="title" placeholder="Assignment Title" required />
-      <input type="text" id="subject" placeholder="Subject" required />
-      <input type="date" id="dueDate" required />
+      <input
+        type="text"
+        id="title"
+        placeholder="Assignment Title"
+        required
+      />
+
+      <input
+        type="text"
+        id="subject"
+        placeholder="Subject"
+        required
+      />
+
+      <input
+        type="date"
+        id="dueDate"
+        required
+      />
+
       <button type="submit">Add Assignment</button>
     </form>
 
-    <!-- Sidebar Toggle Button -->
+    <!-- Search -->
+    <div class="search-container">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="🔍 Search assignments..."
+      />
+    </div>
+
+    <!-- Sidebar Toggle -->
     <button id="toggleSidebar" class="sidebar-toggle">
       User Info
     </button>
 
-    <!-- Right Sidebar -->
+    <!-- Sidebar -->
     <aside id="sidebar" class="sidebar">
       <h2 class="sidebar-title">User Details</h2>
+
       <ul class="sidebar-list">
-        <li><strong>Name:</strong> <span id="sidebarName">John Doe</span></li>
-        <li><strong>Email:</strong> <span id="sidebarEmail">john@example.com</span></li>
-        <li><strong>Total Assignments:</strong> <span id="sidebarAssignments">0</span></li>
-        <li><strong>Last Login:</strong> <span id="sidebarLogin">N/A</span></li>
+        <li>
+          <strong>Name:</strong>
+          <span id="sidebarName">John Doe</span>
+        </li>
+
+        <li>
+          <strong>Email:</strong>
+          <span id="sidebarEmail">john@example.com</span>
+        </li>
+
+        <li>
+          <strong>Total Assignments:</strong>
+          <span id="sidebarAssignments">0</span>
+        </li>
+
+        <li>
+          <strong>Last Login:</strong>
+          <span id="sidebarLogin">N/A</span>
+        </li>
       </ul>
     </aside>
 
+    <!-- Assignment List -->
     <div id="assignmentList" class="assignment-list glass-card">
-      <!-- Assignments will appear here -->
+      <!-- Assignments appear here -->
     </div>
+
   </div>
 
-  <!-- ✅ Only use modern JS modules -->
   <script type="module" src="app.js"></script>
+
 </body>
 </html>
