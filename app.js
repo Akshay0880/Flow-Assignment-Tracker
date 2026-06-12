@@ -1,7 +1,6 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
-import { getFirestore, collection, addDoc, getDocs, query, orderBy, doc, deleteDoc } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
-
+import { getFirestore, collection, addDoc, getDocs, query, orderBy, doc, deleteDoc, updateDoc } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
 // Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyBNkanHKbhyE5eixsnG7-W1Ym-cVZmfLOc",
@@ -132,15 +131,47 @@ const fetchAssignments = async () => {
         assignmentItem.className = "assignment-item";
         assignmentItem.dataset.id = docSnap.id;
 
-        assignmentItem.innerHTML = `
-          <div class="assignment-info">
-            <h3>${assignment.title}</h3>
-            <p>Subject: ${assignment.subject}</p>
-            <p>Due: ${new Date(assignment.dueDate).toLocaleDateString()}</p>
-            <p>Status: ${assignment.completed ? '✅ Completed' : '🟡 Pending'}</p>
-          </div>
-          <button class="delete-btn">Delete</button>
-        `;
+       assignmentItem.innerHTML = `
+  <div class="assignment-info">
+    <h3>${assignment.title}</h3>
+    <p>Subject: ${assignment.subject}</p>
+    <p>Due: ${new Date(assignment.dueDate).toLocaleDateString()}</p>
+    <p>Status: ${assignment.completed ? '✅ Completed' : '🟡 Pending'}</p>
+  </div>
+
+  <div class="button-group">
+    <button class="complete-btn">
+      ${assignment.completed ? 'Undo' : 'Complete'}
+    </button>
+
+    <button class="delete-btn">
+      Delete
+    </button>
+  </div>
+`;
+        const completeBtn =
+  assignmentItem.querySelector(".complete-btn");
+
+completeBtn.addEventListener("click", async () => {
+  try {
+
+    await updateDoc(
+      doc(db, "assignments", docSnap.id),
+      {
+        completed: !assignment.completed
+      }
+    );
+
+    fetchAssignments();
+
+  } catch (error) {
+    console.error(
+      "Error updating assignment:",
+      error
+    );
+  }
+});
+        
 
         const deleteBtn = assignmentItem.querySelector(".delete-btn");
 
