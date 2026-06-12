@@ -1,36 +1,35 @@
-# Student Assignment Tracker
+# FLOW - Assignment Tracker
 
-A simple web application for managing assignments, deadlines, and academic tasks.
+FLOW is a web application that helps students organize and manage assignments efficiently.
 
 ## Features
 
-- Add assignments
-- Track deadlines
-- Organize tasks
-- Responsive design
-- User-friendly interface
+- Google Authentication
+- Assignment Creation
+- Assignment Tracking
+- User Dashboard
+- Assignment Status Management
+- Dark Modern UI
 
-## Technologies Used
+## Technologies
 
 - HTML
 - CSS
 - JavaScript
+- Firebase Authentication
+- Firebase Database
 
-## Project Structure
+## Screenshots
 
-```
-├── Homepage.html
-├── styles.css
-├── wdwwd.js
-└── README.md
-```
+(Add screenshots here)
 
 ## Future Improvements
 
-- User authentication
-- Database integration
-- Assignment reminders
-- Dark mode
+- Assignment Categories
+- Email Reminders
+- Calendar Integration
+- Progress Analytics
+- Mobile App Version
 
 ## Author
 
