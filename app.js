@@ -118,14 +118,22 @@ const fetchAssignments = async () => {
 
     assignmentList.innerHTML = "";
 
-    let totalAssignments = 0;
+   let totalAssignments = 0;
+   let completedAssignments = 0;
+   let pendingAssignments = 0;
 
     querySnapshot.forEach((docSnap) => {
       const assignment = docSnap.data();
 
-      if (assignment.userId === user.uid) {
+   if (assignment.userId === user.uid) {
 
-        totalAssignments++;
+  totalAssignments++;
+
+  if (assignment.completed) {
+    completedAssignments++;
+  } else {
+    pendingAssignments++;
+  }
 
         const assignmentItem = document.createElement("div");
         assignmentItem.className = "assignment-item";
@@ -188,8 +196,24 @@ completeBtn.addEventListener("click", async () => {
       }
     });
 
-    document.getElementById("sidebarAssignments").textContent =
-      totalAssignments;
+ document.getElementById("sidebarAssignments").textContent =
+  totalAssignments;
+
+document.getElementById("completedAssignments").textContent =
+  completedAssignments;
+
+document.getElementById("pendingAssignments").textContent =
+  pendingAssignments;
+
+const completionRate =
+  totalAssignments === 0
+    ? 0
+    : Math.round(
+        (completedAssignments / totalAssignments) * 100
+      );
+
+document.getElementById("completionRate").textContent =
+  completionRate + "%";
 
   } catch (error) {
     console.error("Error fetching assignments:", error);
@@ -219,6 +243,9 @@ const resetSidebarInfo = () => {
   document.getElementById("sidebarName").textContent = "John Doe";
   document.getElementById("sidebarEmail").textContent = "john@example.com";
   document.getElementById("sidebarAssignments").textContent = "0";
+  document.getElementById("completedAssignments").textContent = "0";
+  document.getElementById("pendingAssignments").textContent = "0";
+  document.getElementById("completionRate").textContent = "0%";
   document.getElementById("sidebarLogin").textContent = "N/A";
 };
 // Search Assignments
