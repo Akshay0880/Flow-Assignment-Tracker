@@ -177,6 +177,26 @@ const resetSidebarInfo = () => {
   document.getElementById("sidebarAssignments").textContent = "0";
   document.getElementById("sidebarLogin").textContent = "N/A";
 };
+// Search Assignments
+const searchInput = document.getElementById("searchInput");
+
+if (searchInput) {
+  searchInput.addEventListener("input", () => {
+    const searchValue = searchInput.value.toLowerCase();
+
+    const assignments = document.querySelectorAll(".assignment-item");
+
+    assignments.forEach((assignment) => {
+      const text = assignment.textContent.toLowerCase();
+
+      if (text.includes(searchValue)) {
+        assignment.style.display = "";
+      } else {
+        assignment.style.display = "none";
+      }
+    });
+  });
+}
 
 // Auth state listener
 onAuthStateChanged(auth, (user) => {
