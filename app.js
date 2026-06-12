@@ -114,12 +114,20 @@ const fetchAssignments = async () => {
       collection(db, "assignments"),
       orderBy("dueDate")
     );
+
     const querySnapshot = await getDocs(assignmentsQuery);
+
     assignmentList.innerHTML = "";
+
+    let totalAssignments = 0;
 
     querySnapshot.forEach((docSnap) => {
       const assignment = docSnap.data();
+
       if (assignment.userId === user.uid) {
+
+        totalAssignments++;
+
         const assignmentItem = document.createElement("div");
         assignmentItem.className = "assignment-item";
         assignmentItem.dataset.id = docSnap.id;
@@ -135,10 +143,11 @@ const fetchAssignments = async () => {
         `;
 
         const deleteBtn = assignmentItem.querySelector(".delete-btn");
+
         deleteBtn.addEventListener("click", async () => {
           try {
             await deleteAssignment(docSnap.id);
-            assignmentItem.remove();
+            fetchAssignments();
           } catch (error) {
             console.error("Error deleting assignment:", error);
           }
@@ -147,6 +156,10 @@ const fetchAssignments = async () => {
         assignmentList.appendChild(assignmentItem);
       }
     });
+
+    document.getElementById("sidebarAssignments").textContent =
+      totalAssignments;
+
   } catch (error) {
     console.error("Error fetching assignments:", error);
   }
